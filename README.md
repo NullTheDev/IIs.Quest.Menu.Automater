@@ -1,37 +1,81 @@
-# IIs.Quest.Menu.Automater Technical Deployment and Liability Framework Protocol
+# IIs.Quest.Menu.Automater: Implementation & Deployment Protocol
 
-### Section 1: Preamble and Scope of Application
-The IIs.Quest.Menu.Automater (hereinafter "the Utility") is a specialized technical script designed for the automation of secondary binary deployment within the Android-based Extended Reality (XR) architecture, specifically targeting the Meta Quest 3 hardware and its underlying software environment. This document serves as both a technical specification and a mandatory, legally binding agreement between the person executing the software (hereinafter "the User") and the developer(s) and contributor(s) of this repository (hereinafter "the Providers"). The Utility is intended for advanced developers and researchers. It is not a consumer-grade application, and its execution involves system-level modifications that bypass standard operating system safety protocols.
+### Quick Navigation
+* [SECTION A: MANDATORY LEGAL DISCLAIMER](#section-a-mandatory-binding-legal-disclaimer)
+* [SECTION B: SYSTEM REQUIREMENTS](#section-b-technical-specifications)
+* [SECTION C: INSTALLATION GUIDE](#section-c-deployment-instructions)
+* [SECTION D: TECHNICAL ARCHITECTURE](#section-d-operational-mechanics)
 
-### Section 2: COMPREHENSIVE WAIVER OF LIABILITY AND ASSUMPTION OF RISK
-THIS SECTION CONSTITUTES A TOTAL RELEASE OF ALL CLAIMS. BY DOWNLOADING, CLONING, OR EXECUTING THE UTILITY, THE USER ACKNOWLEDGES THAT THEY ARE ENGAGING IN HIGH-RISK HARDWARE MODIFICATION. THE USER VOLUNTARILY ASSUMES ALL RISKS, KNOWN AND UNKNOWN, ASSOCIATED WITH THE EXECUTION OF ADB (ANDROID DEBUG BRIDGE) COMMANDS, SHELL SCRIPTS, AND MEMORY INJECTION TOOLS.
+---
 
-THE PROVIDERS SHALL NOT BE HELD LIABLE FOR ANY DAMAGES WHATSOEVER, INCLUDING BUT NOT LIMITED TO:
-A. TOTAL SYSTEM MALFUNCTION OR PERMANENT NON-FUNCTIONAL STATE (BRICKING): THE USER ACKNOWLEDGES THAT WRITING TO SYSTEM DIRECTORIES SUCH AS /DATA/LOCAL/TMP/ AND ALTERING EXECUTION PERMISSIONS CAN LEAD TO KERNEL PANICS, BOOT LOOPS, AND PERMANENT FIRMWARE CORRUPTION.
-B. DIMINUTION OF FINANCIAL VALUE: THE USER EXPRESSLY WAIVES THE RIGHT TO SEEK COMPENSATION FOR THE LOSS OF RESALE VALUE, WARRANTY VOIDANCE, OR THE LOSS OF ELIGIBILITY FOR OFFICIAL TECHNICAL SUPPORT FROM THE ORIGINAL EQUIPMENT MANUFACTURER (OEM).
-C. ACCOUNT SANCTIONS AND ASSET LOSS: THE USE OF THE UTILITY TO MODIFY THIRD-PARTY APPLICATIONS SUCH AS GORILLA TAG IS A BREACH OF MOST PLATFORM TERMS OF SERVICE. THE PROVIDERS ARE NOT RESPONSIBLE FOR THE PERMANENT BANNING OF META/OCULUS ACCOUNTS, THE LOSS OF PURCHASED SOFTWARE LIBRARIES, STORE CREDITS, OR SOCIAL NETWORKING ACCESS.
-D. INTELLECTUAL PROPERTY CLAIMS: THE USER ASSUMES ALL LEGAL RESPONSIBILITY FOR ANY INFRINGEMENT CLAIMS BROUGHT BY THIRD-PARTY DEVELOPERS (E.G., ANOTHER AXIOM) RESULTING FROM THE USE OF THIS UTILITY.
+## SECTION A: MANDATORY BINDING LEGAL DISCLAIMER
+### THE "IRON-CLAD" WAIVER OF LIABILITY
 
-THE USER AGREES TO INDEMNIFY, DEFEND, AND HOLD HARMLESS THE PROVIDERS FROM AND AGAINST ANY AND ALL LOSSES, DAMAGES, LIABILITIES, DEFICIENCIES, CLAIMS, ACTIONS, JUDGMENTS, SETTLEMENTS, INTEREST, AWARDS, PENALTIES, FINES, COSTS, OR EXPENSES OF WHATEVER KIND, INCLUDING REASONABLE ATTORNEYS' FEES, ARISING FROM OR RELATING TO THE USER'S USE OR MISUSE OF THE UTILITY.
+**BY UTILIZING THIS SOFTWARE, YOU ARE ENTERING INTO A BINDING AGREEMENT. READ THIS SECTION IN ITS ENTIRETY.**
 
-### Section 3: Technical Specifications and Host-Side Modifications
-To ensure total transparency and informed consent, the User must understand the following technical operations. Upon execution, the Utility audits the host Windows environment for the presence of the Android Debug Bridge (ADB), Python 3.11+, and Curl. If these are not found, the Utility will perform a silent, unattended installation of these tools. Specifically, for the ARM64 chipset of the Quest 3, the Utility ensures that the PC-side Frida-Tools match the architectural requirements of the remote server. 
+The IIs.Quest.Menu.Automater (hereinafter "the Utility") is provided "as-is" without any express or implied warranties. The developer(s), contributor(s), and host(s) (hereinafter "the Providers") hereby disclaim all liability for any hardware damage, software corruption, or financial loss resulting from the use or misuse of this code.
 
-The Utility modifies the Windows System Environment Variables (PATH) to allow for immediate command-line execution. This is a system-wide change on the host machine. On the target device (the Quest 3), the Utility pushes binaries to the temporary partition. These files are then granted "755" or "+x" permissions. The User acknowledges that these files remain in the headset's storage until a manual deletion or factory reset occurs.
+#### I. Assumption of Absolute Risk
+The User acknowledges that the Meta Quest 3 is a sophisticated piece of hardware with proprietary firmware. Engaging in ADB-level modifications and memory injection is an inherently "unsupported" activity. By executing the script, the User accepts a non-zero risk of "Bricking"—a state in which the device becomes permanently non-functional. The Providers are not responsible for providing recovery tools, hardware replacement, or technical support in the event of a system failure.
 
-### Section 4: Behavioral Protocol for Memory Injection and IL2CPP Stabilization
-The successful execution of the iis.Quest.Menu exploit requires a precise synchronization between the host PC and the headset's RAM. The target application, Gorilla Tag, utilizes the IL2CPP (Intermediate Language to C++) backend. During the startup sequence, the application must unpack and load metadata into the system's memory. 
+#### II. Waiver of Financial and Property Claims
+The User expressly waives any right to seek damages for:
+1. **Device Depreciation:** Any loss in resale value caused by software modification.
+2. **Warranty Voidance:** Most manufacturers consider ADB-level system tampering as grounds for immediate warranty termination.
+3. **Asset Loss:** The Providers are not liable for the loss of Meta/Oculus accounts, purchased software libraries, or social standing within the VR community resulting from platform bans.
 
-The User is strictly prohibited from proceeding with the final injection phase until they have visually confirmed that the "Gorilla Tag" application has finished its loading sequence, including the rendering of cosmetics and the mirror-room textures. Attempting to hook the memory process while the game is in a transition state (loading screens) will cause the Frida-Server to point to invalid memory addresses. This will result in a fatal segmentation fault, potentially causing a hard lock of the Quest 3 Operating System. The User accepts that they are the final arbiter of safety and that the script's confirmation prompts are a mandatory manual barrier to prevent device failure.
+#### III. Indemnification
+The User agrees to indemnify and hold harmless the Providers from any legal actions brought by third parties (including, but not limited to, game developers like Another Axiom) arising from the User's activity. You are the sole operator of this software; you bear the sole responsibility for its consequences.
 
-### Section 5: Python Versioning and Chipset Architecture Requirements
-This Utility is optimized for the ARM64 (Advanced RISC Machines) architecture used in the Qualcomm Snapdragon XR2 Gen 2 chipset found within the Quest 3. Due to the specific instruction sets required for memory hooking on this architecture, the host machine must utilize Python versions that support the latest Frida-Tools (Frida 16.x or higher). Any attempt to utilize deprecated versions of these tools or incompatible architectures may result in "Illegal Instruction" errors, which can destabilize the headset's background services and require a full hardware reboot.
+#### IV. Parental and Guardian Notice
+If the User is a minor, the legal guardian assumes all financial and hardware risks associated with this software. The Providers do not target this software toward children and assume that any user possesses the technical competency to understand these warnings.
 
-### Section 6: No Agency or Relationship
-The execution of this software does not create any form of attorney-client, agency, partnership, or joint venture relationship between the User and the Providers. The User acts as an independent entity. This document is the entire agreement between the parties regarding the subject matter and supersedes all prior or contemporaneous communications, whether electronic, oral, or written.
+---
 
-### Section 7: Severability and Governing Law
-If any provision of this document is held to be invalid, illegal, or unenforceable, the validity, legality, and enforceability of the remaining provisions shall not be affected or impaired. This agreement shall be governed by the principles of common law and the specific statutes regarding digital modification and software automation.
+## SECTION B: TECHNICAL SPECIFICATIONS
+### PC & HEADSET REQUIREMENTS
 
-### Section 8: Final Declaration
-BY CONTINUING TO USE THIS SOFTWARE, YOU CONFIRM THAT YOU HAVE READ THIS PAGES-LONG DOCUMENT IN ITS ENTIRETY, THAT YOU FULLY UNDERSTAND THE RISKS OF BRICKING YOUR HARDWARE OR LOSING YOUR DIGITAL ACCOUNTS, AND THAT YOU VOLUNTARILY CHOOSE TO PROCEED WITH NO RECOURSE AGAINST THE PROVIDERS. YOU ARE THE SOLE OPERATOR OF YOUR DESTINY.
+To maintain stability and prevent the aforementioned risks, the following environment is required:
+
+* **Host OS:** Windows 10 or 11 (64-bit).
+* **Permissions:** Administrator privileges (required for System PATH modification).
+* **Hardware:** Meta Quest 3 / Quest 2 (Developer Mode must be enabled via the Meta Quest mobile app).
+* **Python Version:** 3.11.x (The script will attempt to install this if missing).
+* **Architecture:** ARM64 (Optimized for the Snapdragon XR2 Gen 2 chipset).
+
+---
+
+## SECTION C: DEPLOYMENT INSTRUCTIONS
+### HOW TO RUN THE AUTOMATER
+
+1.  **Isolation:** Place the `automater.bat` file in its own folder on your Desktop. Do not run it from inside a .zip file.
+2.  **Execution:** Right-click `automater.bat` and select **Run as Administrator**.
+3.  **Initialization:** The script will check for ADB, Python, and Frida. If they are missing, it will download them silently. Do not close the window during this phase.
+4.  **Connection:** Connect your Quest 3 to your PC via a high-quality USB-C cable. If prompted inside the headset, select "Allow USB Debugging."
+5.  **The Safety Interlock:** Once the script pushes the files, a **RED WARNING SCREEN** will appear on your PC.
+    * **STOP:** Put on your headset.
+    * **LAUNCH:** Open Gorilla Tag.
+    * **LOAD:** Wait in the stump until your cosmetics are visible in the mirror.
+    * **CONFIRM:** Return to the PC and complete the 3-stage keypress confirmation.
+
+---
+
+## SECTION D: OPERATIONAL MECHANICS
+### UNDER THE HOOD
+
+This Utility functions as a sophisticated wrapper for the following technical operations:
+
+#### 1. Binary Deployment
+The script utilizes the `adb push` command to move `cheese` and `frida-server` into the `/data/local/tmp/` directory. This is one of the few partitions on a non-rooted Quest that allows for executable file permissions.
+
+#### 2. Permission Mapping
+By executing `chmod +x`, the script converts these raw files into runnable programs. Without this step, the Android OS would block the Frida-Server from starting.
+
+#### 3. IL2CPP Hooking
+The script triggers a PC-side Frida process that targets the `com.AnotherAxiom.GorillaTag` process. It uses a specialized bridge to hook into the game’s IL2CPP (C++) code in real-time. This is why the game **must** be loaded; if the memory addresses aren't populated, the hook has nothing to grab onto, leading to a system crash.
+
+#### 4. Background Persistence
+The Frida-Server is launched with a trailing `&` symbol, allowing it to run as a "daemon" (background process). This ensures the mod menu stays active even after the initial script window is closed.
+
+---
+*Developed for the Quest Modding Community. Proceed with Caution.*
