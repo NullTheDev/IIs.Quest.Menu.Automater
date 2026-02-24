@@ -1,5 +1,8 @@
 # IIs.Quest.Menu.Automater: Implementation & Deployment Protocol
 
+⚠️ This project depends on iiDk's Quest Menu, which is licensed under the GPL.
+You are responsible for complying with all of their license terms when using this software.
+
 ### Quick Navigation
 * [SECTION A: MANDATORY LEGAL DISCLAIMER](#section-a-mandatory-binding-legal-disclaimer)
 * [SECTION B: SYSTEM REQUIREMENTS](#section-b-technical-specifications)
